@@ -136,6 +136,12 @@
 								});
 								graph.render();
 
+								//var slider = new Rickshaw.Graph.RangeSlider({
+            	   				//	 graph: graph,
+        	       				//	 element: $('#feed-' + feedId + ' .datastreams .datastream-' + datastream.id + ' .slider')
+               					// });
+
+
 								var ticksTreatment = 'glow';
 
 								// Define and Render X Axis (Time Values)
