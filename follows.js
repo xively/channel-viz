@@ -108,12 +108,10 @@
 					 if(duration == '1month') diff = 2628000000;
 					 if(duration == '90days') diff = 7884000000;
 					then.setTime(now.getTime() - diff);
-					console.log('then: ' + then.getTime());
-					console.log('updated: ' + updated.getTime());
 					if(updated.getTime() > then.getTime()) {
 						if(datastreamIds && datastreamIds != '' && datastreamIds.indexOf(datastream.id) >= 0) {
 							xively.datastream.history(feedId, datastream.id, {duration: duration, interval: interval, limit: 1000}, function(datastreamData) {
-								console.log(datastreamData);
+
 								var series = [];
 								var points = [];
 
