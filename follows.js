@@ -122,7 +122,7 @@
 								var graph = new Rickshaw.Graph( {
 									element: document.querySelector('#graph-' + feedId + '-' + datastream.id),
 									width: 600,
-									height: 150,
+									height: 200,
 									renderer: 'line',
 									min: parseFloat(datastream.min_value) - .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
 									max: parseFloat(datastream.max_value) + .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
@@ -311,7 +311,7 @@
 						return false;
 					});
 					
-					$('#feed-' + data.id + ' .duration-year').click(function() {
+					$('#feed-' + data.id + ' .duration-90').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '90days', 10800);
 						return false;
