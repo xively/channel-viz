@@ -28,16 +28,13 @@
 // Function Declarations
 	
 	// URL Parameters
-	function getParam ( sname ) {
-		var temp = '';
-		var params = location.search.substr(location.search.indexOf("?")+1);
-		var sval = "";
-		params = params.split("&");
-		for (var i=0; i<params.length; i++) {
-			temp = params[i].split("=");
-			if ( [temp[0]] == sname ) { sval = temp[1]; }
+	function getParam(key) {
+	 	var value = location.hash.match(new RegExp(key+'=([^&]*)'));
+		if(value) {
+			return value[1];
+		} else {
+			return "";
 		}
-		return sval;
 	}
 
 	// Graph Annotations
@@ -463,7 +460,7 @@
 	$('#setFeeds').click(function() {
 		setApiKey($('#apiKeyInput').val());
 		feeds = $('#feedsInput').val().replace(/\s+/g, '').split(',');
-		window.location = './index.html?key=' + $('#apiKeyInput').val() + '&feeds=' + $('#feedsInput').val();
+		window.location = './index.html#key=' + $('#apiKeyInput').val() + '&feeds=' + $('#feedsInput').val();
 		return false;
 	});
 // END Initialization
