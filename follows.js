@@ -59,28 +59,9 @@
 
 	// Parse Xively ISO Date Format to Date Object
 	Date.prototype.parseISO = function(iso){
-		//var z, tem, TZ, ms= 0;
-		//z=  /:/.test(iso)? ' GMT': '';
-		//ms=/(\.\d+)/.exec(iso);
-		//if(ms){
-		//	ms= ms[1];
-		//	iso= iso.replace(ms,'');
-		//	ms= Math.round(1000*ms);
-		//}
-		//if(z && !/Z$/.test(iso)){
-		//	TZ=/:\d\d((\-|\+)(\d\d):(\d\d))$/.exec(iso);
-		//	if(TZ){
-		//		tem= TZ[3]*60+(+TZ[4]);
-		//		z+= TZ[2]+tem;
-		//		iso= iso.replace(TZ[1],'');
-		//	}
-		//}
-		//iso= iso.replace(/[^\d:]/g,' ')+z;
 		var stamp= Date.parse(iso);
 		if(!stamp) throw iso +' Unknown date format';
-		//return new Date(stamp+ms);
-        return new Date(stamp);
-        
+		return new Date(stamp);
 	}
 
 	// Set xively API Key
