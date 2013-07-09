@@ -1,8 +1,3 @@
-
-
-
-
-
 (function ( $ ){
 
 	/*
@@ -26,7 +21,7 @@
 		hideForm		= 0; // To hide input form use value of 1, otherwise set to 0
 
 // Function Declarations
-	
+
 	// URL Parameters
 	function getParam(key) {
 	 	var value = location.hash.match(new RegExp(key+'=([^&]*)'));
@@ -123,10 +118,18 @@
 								$('.datastream-' + datastream.id).remove();
 								$('#feed-' + feedId + ' .datastream.hidden').clone().appendTo('#feed-' + feedId + ' .datastreams').addClass('datastream-' + datastream.id).removeClass('hidden');
 
+								// Check for Datastream Tags
+								var tagsHtml = '';
+								if(datastreamData.tags) {
+									tagsHtml = '<div style="font-size: 14px;"><span class="radius secondary label">' + datastreamData.tags.join('</span> <span class="radius secondary label">') + '</span></div>';
+								} else {
+									tagsHtml = '';
+								}
+
 								// Fill Datastream UI with Data
 								$('#feed-' + feedId + ' .datastreams .datastream-' + datastream.id + ' .datastream-name').html(datastream.id);
 								$('#feed-' + feedId + ' .datastreams .datastream-' + datastream.id + ' .datastream-value').html(datastream.current_value);
-								
+
 								// Include Datastream Unit (If Available)
 								if(datastream.unit) {
 									if(datastream.unit.symbol) {
@@ -138,7 +141,7 @@
 									$('#feed-' + feedId + ' .datastreams .datastream-' + datastream.id + ' .datastream-value').html(datastream.current_value);
 								}
 								$('.datastream-' + datastream.id).removeClass('hidden');
-								
+
 								// Historical Datapoints
 								if(datastreamData.datapoints) {
 
@@ -236,7 +239,7 @@
 				thisFeedId = id;
 			}
 			id = thisFeedId;
-	
+
 			if($('#feed-' + id)) {
 				$('#feed-' + id).remove();
 			}
@@ -244,13 +247,13 @@
 				if(data.id == id) {
 					// Duplicate Example to Build Feed UI
 					$('#exampleFeed').clone().appendTo('#feeds').attr('id', 'feed-' + id).removeClass('hidden');
-				
+
 					// ID
 					$('#feed-' + data.id + ' .title .value').html(data.title);
 
 					// Title
 					$('#feed-' + data.id + ' .id .value').html(data.id);
-					
+
 					// Description
 					if(data.description) {
 						$('#feed-' + data.id + ' .description .value').html(data.description);
@@ -260,11 +263,11 @@
 
 					// Link
 					$('#feed-' + data.id + ' .link .value').html('<a href="https://xively.com/feeds/' + data.id + '/">View on Xively &raquo;</a>');
-					
+
 					// Creator
 					var creator = /[^/]*$/.exec(data.creator)[0];
 					$('#feed-' + data.id + ' .creator .value').html('<a href="' + data.creator + '">' + creator + '</a>');
-					
+
 					// Date Updated
 					$('#feed-' + data.id + ' .updated .value').html(data.updated);
 
@@ -278,7 +281,7 @@
 					// Location
 					if(data.location) {
 						if(data.location.name || data.location.lat || data.location.ele || data.location.disposition) {
-							
+
 							// Location Name
 							if(data.location.name) {
 								$('#feed-' + data.id + ' .location-name .value').html(data.location.name);
@@ -335,31 +338,31 @@
 							$('#feed-' + data.id + ' .disposition').addClass('hidden');
 							$('#feed-' + data.id + ' .map').addClass('hidden');
 					}
-					
+
 					$('#feed-' + data.id + ' .duration-hour').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '6hours', 30);
 						return false;
 					});
-					
+
 					$('#feed-' + data.id + ' .duration-day').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '1day', 60);
 						return false;
 					});
-					
+
 					$('#feed-' + data.id + ' .duration-week').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '1week', 900);
 						return false;
 					});
-					
+
 					$('#feed-' + data.id + ' .duration-month').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '1month', 1800);
 						return false;
 					});
-					
+
 					$('#feed-' + data.id + ' .duration-90').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
 						updateFeeds(data.id, thisFeedDatastreams, '90days', 10800);
