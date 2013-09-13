@@ -61,9 +61,21 @@
 	<script src="js/xivelyjs-1.0.0.min.js"></script>
 	<script src="js/d3.v2.js"></script>
 	<script src="js/rickshaw.min.js"></script>
+        <script src="http://d23cj0cdvyoxg0.cloudfront.net/xivelyjs-1.0.4.min.js"></script>        
 
 </head>
 <body>
+
+// Set your API key first  
+xively.setKey( "YOUR_KEY_HERE" );  
+// Get feed content  
+xively.feed.get( "504", function( data ) {  
+  console.log( data.title ); // Logs the feed title  
+});  
+// Get realtime updates on a datastream  
+xively.datastream.subscribe( "61916", "sine60", function( event, data ) {  
+  console.log( data.current_value ); // Logs value changes in realtime  
+});
 
 	<!-- Header -->
 	<div style="background: #101C24;">
