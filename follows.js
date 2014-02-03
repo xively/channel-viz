@@ -17,7 +17,7 @@
 		applicationName	= 'DS18B20', // Replaces Xively logo in the header
 		dataDuration	= '30', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
 		dataInterval	= 1800, // Default interval for data to be displayed (in seconds)
-		dataColor		= 'steelblue', // CSS HEX value of color to represent data (omit leading #)
+		dataColor		= '', // CSS HEX value of color to represent data (omit leading #)
 		hideForm		= 1; // To hide input form use value of 1, otherwise set to 0
 
 // Function Declarations
@@ -137,7 +137,7 @@
 									series.push({
 										name: datastream.id,
 										data: points,
-										color: '#' + dataColor
+										color: 'steelblue' + dataColor
 									});
 
 									// Initialize Graph DOM Element
@@ -148,7 +148,7 @@
 										element: document.querySelector('#graph-' + feedId + '-' + datastream.id),
 										width: 600,
 										height: 200,
-										renderer: 'area',
+										renderer: 'scatterplot',
 										min: parseFloat(datastream.min_value) - .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
 										max: parseFloat(datastream.max_value) + .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
 										padding: {
