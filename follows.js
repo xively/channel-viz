@@ -1,24 +1,11 @@
 (function ( $ ){
-
-	/*
-	EXAMPLE CONFIGURATION
-
-		var defaultKey	= 'fje329iun52ngtuijo2f4jeun432A', // Unique master Xively API key to be used as a default
-		defaultFeeds	= [61916,12425,94322], // Comma separated array of Xively Feed ID numbers
-		applicationName	= 'My Company\'s Application', // Replaces Xively logo in the header
-		dataDuration	= '90days', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
-		dataInterval	= 10800, // Default interval for data to be displayed (in seconds)
-		dataColor		= '0A1922', // CSS HEX value of color to represent data (omit leading #)
-		hideForm		= 0;
-	*/
-
-	var defaultKey		= '', // Unique master Xively API key to be used as a default
-		defaultFeeds	= [], // Comma separated array of Xively Feed ID numbers
-		applicationName	= '', // Replaces Xively logo in the header
-		dataDuration	= '', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
-		dataInterval	= 0, // Default interval for data to be displayed (in seconds)
-		dataColor		= '', // CSS HEX value of color to represent data (omit leading #)
-		hideForm		= 0; // To hide input form use value of 1, otherwise set to 0
+	var defaultKey		= '823305314', // Unique master Xively API key to be used as a default
+		defaultFeeds	= [x, y, z], // Comma separated array of Xively Feed ID numbers
+		applicationName	= 'Phone Location', // Replaces Xively logo in the header
+		dataDuration	= '1', // Default duration of data to be displayed // ref: https://xively.com/dev/docs/api/data/read/historical_data/
+		dataInterval	= 60, // Default interval for data to be displayed (in seconds)
+		dataColor	= 'fff', // CSS HEX value of color to represent data (omit leading #)
+		hideForm	= 1; // To hide input form use value of 1, otherwise set to 0
 
 // Function Declarations
 
@@ -148,7 +135,7 @@
 										element: document.querySelector('#graph-' + feedId + '-' + datastream.id),
 										width: 600,
 										height: 200,
-										renderer: 'line',
+										renderer: 'area',
 										min: parseFloat(datastream.min_value) - .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
 										max: parseFloat(datastream.max_value) + .25*(parseFloat(datastream.max_value) - parseFloat(datastream.min_value)),
 										padding: {
@@ -348,7 +335,7 @@
 
 					$('#feed-' + data.id + ' .duration-90').click(function() {
 						$('#loadingData').foundation('reveal', 'open');
-						updateFeeds(data.id, thisFeedDatastreams, '90days', 10800);
+						updateFeeds(data.id, thisFeedDatastreams, '6months', 1800*6);
 						return false;
 					});
 
